@@ -1,0 +1,38 @@
+body {
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
+}
+
+
+form {
+  text-align: center;
+}
+
+
+h1 {
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+h2 {
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.form {
+  text-align: left;
+  /* float: left; */
+  display: inline;
+  /* cursor : pointer; */
+
+}
+/*
+.done-button {
+  cursor : pointer;
+} */
