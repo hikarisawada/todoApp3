@@ -12,7 +12,10 @@ if (isset($_POST['signup'])) {
     echo 'パスワードが未入力です。';
   }
 // メアドもパスワードも入ってたら
-  if (!empty($_POST['email']) && !empty($_POST['password'])) {
+
+// TODO 出来るだけ簡単に書く
+// 
+  if (empty($_POST['email']) || empty($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
