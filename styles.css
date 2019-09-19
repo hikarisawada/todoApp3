@@ -1,21 +1,24 @@
 body {
+  /* pxでなくremを使う */
   font-size: 16px;
   font-family: Verdana, sans-serif;
 }
 
-
+/* formタグ全部が中央寄せになっちゃうからちゃんとクラスを作る */
 form {
   text-align: center;
 }
 
 
 h1 {
+  /* emとか設定してあげる */
   font-size: 16px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
 }
 
 h2 {
+  /* emとか設定してあげる */
   font-size: 14px;
   padding-bottom: 5px;
 }
@@ -24,7 +27,7 @@ a {
   text-decoration: none;
 }
 
-
+/* contact-formとかそういう感じで、わかりやすく書くかな */
 .form {
   text-align: left;
   /* float: left; */
