@@ -39,9 +39,15 @@ require_once('config.php');
    </head>
    <body>
      <h1>プロフィール更新ページ</h1>
-
+     <form class="form" action="profile_update.php" method="post">
+              <label>newメールアドレス</label>
+              <input type="text" name="new_email" value="<?php $user['email'] ?>"><br>
+              <label>newパスワード</label>
+              <input type="password" name="new_password" placeholder="パスワード変更してね">
+              <input type="submit" name="edit" value="更新！">
+          </form>
      <?php
-       echo '<form class="form" action="profile_update.php" method="post">
+        '<form class="form" action="profile_update.php" method="post">
                 <label>newメールアドレス</label>
                 <input type="text" name="new_email" value="' . $user['email'] . '"><br>
                 <label>newパスワード</label>
