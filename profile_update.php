@@ -2,11 +2,11 @@
 
 require_once('config.php');
 
-
 if (empty($_POST['new_email'])) {
    echo 'メールアドレスが記入されていません。';
    return false;
-} elseif (empty($_POST["new_password"])) {
+}
+if (empty($_POST["new_password"])) {
   echo 'パスワードが記入されていません。';
   return false;
 }
