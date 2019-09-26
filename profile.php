@@ -4,10 +4,15 @@ require_once('config.php');
 
 
 
-if (!isset($_SESSION['email'])) {
-  // header('Location: login.php');
-}
+$dbh = db_connect();
 
+$sql = 'select *
+from users
+where id = :user_id';
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':user_id', $_SESSION['id'], PDO::PARAM_STR);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC)
 
  ?>
 
@@ -17,27 +22,38 @@ if (!isset($_SESSION['email'])) {
    <head>
      <meta charset="utf-8">
      <title>Profile</title>
-     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="styles3.css">
    </head>
-   <body>
-     <h1>プロフィール</h1>
-     <h2><a href="/folder/list.php">フォルダ一覧</a></h2>
-     <h2><a href="/todo/list.php">todoリスト一覧</a></h2>
-     <section>
-       <h2>ユーザー情報
-       <?php
-       echo '<form class="form" action="profile_edit.php" method="post">
-       <input class="edit-button" type="submit" name="edit" value="編集する">
-       </form>';
-       ?>
-       </h2>
-       <ul>
-         <li>メールアドレス：<?php echo h($_SESSION['email']); ?></li>
-         <li>パスワード：********</li>
-       </ul>
-     </section>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li class="top"><a href="top.php">todoApp</a></li>
+        <li class="menu"><a href="logout.php">logout</a></li>
+        <li class="menu"><a href="profile.php">ユーザー情報</a></li>
+      </ul>
+    </nav>
 
-     <a href="/logout.php">ログアウト</a>
+  </header>
+       <h2>ユーザー情報</h2>
+<?php
+        echo
+         '<table class="profile-table">
+           <tr>
+             <th>メールアドレス</th>
+             <td>'. $user['email'].'</td>
+           </tr>
+           <tr>
+             <th>パスワード</th>
+             <td>********</td>
+           </tr>
+
+         </table>';
+       ?>
+       <form class="profile-form" action="profile_edit.php" method="post">
+       <input class="edit-button" type="submit" name="edit" value="編集する">
+       </form>
+
 
    </body>
  </html>

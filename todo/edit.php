@@ -27,15 +27,25 @@ try {
    <head>
      <meta charset="utf-8">
      <title>Profile</title>
-     <link rel="stylesheet" href="../styles.css">
+     <link rel="stylesheet" href="../styles3.css">
    </head>
    <body>
-     <h1>todo更新ページ</h1>
+     <header>
+       <nav>
+         <ul>
+           <li class="top"><a href="../top.php">todoApp</a></li>
+           <li class="menu"><a href="../logout.php">logout</a></li>
+           <li class="menu"><a href="../profile.php">ユーザー情報</a></li>
+         </ul>
+       </nav>
+
+     </header>
+     <h2>todo更新ページ</h2>
 
      <?php
 
 
-       echo '<form class="form" action="update.php" method="post">
+       echo '<form class="todo-edit" action="update.php" method="post">
                 <input type="hidden" name="todo_id" value="' . $todo['todo_id'] . '">
                 <input type="text" name="todo_name" value="' . $todo['todo_name'] . '">
                 <input type="submit" name="edit" value="更新！">
@@ -43,7 +53,6 @@ try {
 
       ?>
 
-         <a href="list.php">キャンセル</a>
        </form>
    </body>
  </html>

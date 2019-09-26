@@ -25,8 +25,8 @@ echo $e->getMessage();
 
 // 新規作成」押したら
 if (isset($_POST['submit'])) {
-
-  header('Location: create_insert.php');
+// var_dump($_POST['folder_id']);
+  // header('Location: create_insert.php');
 }
 
 
@@ -38,24 +38,35 @@ if (isset($_POST['submit'])) {
     <head>
       <meta charset="utf-8">
       <title>todo_create</title>
-      <link rel="stylesheet" href="../styles.css">
+      <link rel="stylesheet" href="../styles3.css">
     </head>
     <body>
-      <h1>todo作成ページ</h1>
+      <header>
+        <nav>
+          <ul>
+            <li class="top"><a href="../top.php">todoApp</a></li>
+            <li class="menu"><a href="../logout.php">logout</a></li>
+            <li class="menu"><a href="../profile.php">ユーザー情報</a></li>
+          </ul>
+        </nav>
+
+      </header>
+      <h2>todo作成ページ</h2>
 
 <?php
-echo '<label>フォルダを選んでください</label>';
+echo '<div class="todo-create"><label>フォルダを選んでください</label>';
 while ($todo = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  // var_dump($todo);
   echo '<form class="" action="create_insert.php" method="post">
-  <input type="radio" name="folder_name" value="'. $todo['folder_name'] . '" >  '. $todo['folder_name'] . '
-  <input type="hidden" name="folder_id" value="' . $todo['folder_id'] . '"><br>
+  <input type="radio" name="folder_id" value="'. $todo['folder_id'] . '" >  '. $todo['folder_name'] . '
+  <br>
   ';
 
 }
   echo '<label>todo名を記入してください</label><br>
-  <input type="text" name="todo_name" value="">
+  <input type="text" name="todo_name" value=""><br>
   <input type="submit" name="submit" value="作成！">
-  </form>'
+  </form></div>'
 
 ?>
 
