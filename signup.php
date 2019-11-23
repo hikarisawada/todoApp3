@@ -8,7 +8,8 @@ require_once('config.php');
 if (isset($_POST['signup'])) {
   if (empty($_POST['email'])) {
     echo 'emailが未入力です。';
-  }else if (empty($_POST['password'])) {
+  }
+  if (empty($_POST['password'])) {
     echo 'パスワードが未入力です。';
   }
 // メアドもパスワードも入ってたら
@@ -56,10 +57,21 @@ if (isset($_POST['signup'])) {
    <head>
      <meta charset="utf-8">
      <title>Sign Up!</title>
-     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="styles3.css">
    </head>
+
    <body>
-     <form action="" method="post">
+     <header>
+       <nav>
+         <ul>
+           <li class="top"><a href="top.php">todoApp</a></li>
+           <li class="menu"><a href="login.php">loginはこちら</a></li>
+         </ul>
+       </nav>
+
+     </header>
+     <h2>新規登録ページ</h2>
+     <form class="signup-form" action="" method="post">
        <div>
          <label>メールアドレス</label>
          <input type="email" name="email" value="" placeholder="info@sample.com">
@@ -70,9 +82,6 @@ if (isset($_POST['signup'])) {
        </div>
        <div>
          <input type="submit" name="signup" value="新規登録する">
-       </div>
-       <div>
-         <a href="/login.php">ログインはこちらから</a>
        </div>
        <!-- <a href="/login.php">ログイン</a> -->
      </form>

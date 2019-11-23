@@ -20,7 +20,7 @@ if (empty($_POST['todo_name'])) {
     $stmt->execute();
     // var_dump($folder['name']);
 
-    header('Location: list.php');
+    header('Location: ../top.php');
 
   } catch (\Exception $e) {
     echo $e->getMessage();

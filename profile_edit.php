@@ -35,21 +35,30 @@ require_once('config.php');
    <head>
      <meta charset="utf-8">
      <title>profile_edit</title>
-     <link rel="stylesheet" href="../styles.css">
+     <link rel="stylesheet" href="../styles3.css">
    </head>
    <body>
-     <h1>プロフィール更新ページ</h1>
+     <header>
+       <nav>
+         <ul>
+           <li class="top"><a href="top.php">todoApp</a></li>
+           <li class="menu"><a href="logout.php">logout</a></li>
+           <li class="menu"><a href="profile.php">ユーザー情報</a></li>
+         </ul>
+       </nav>
+
+     </header>
+     <h2>プロフィール更新ページ</h2>
 
      <?php
-       echo '<form class="form" action="profile_update.php" method="post">
+       echo '<form class="profile-edit" action="profile_update.php" method="post">
                 <label>newメールアドレス</label>
                 <input type="text" name="new_email" value="' . $user['email'] . '"><br>
                 <label>newパスワード</label>
-                <input type="password" name="new_password" value="">
+                <input type="password" name="new_password" value=""><br>
                 <input type="submit" name="edit" value="更新！">
             </form>';
       ?>
 
-         <a href="profile.php">キャンセル</a>
    </body>
  </html>

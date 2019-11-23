@@ -9,13 +9,13 @@ if (empty($_POST['todo_name'])) {
   return false;
 }
 if (empty($_POST['folder_id'])) {
-  echo 'フォルダが選択されていません。';
+  echo 'フォルダが選択されていません。1';
   return false;
 }
-if (empty($_POST['folder_name'])) {
-  echo 'フォルダが選択されていません。';
-  return false;
-}
+// if (empty($_POST['folder_name'])) {
+//   echo 'フォルダが選択されていません。2';
+//   return false;
+// }
 
 
 try {
@@ -31,7 +31,7 @@ $stmt->bindValue(':todo_name', $todo['todo_name'], PDO::PARAM_STR);
 $stmt->bindParam(':user_id', $_SESSION['id'], PDO::PARAM_STR);
 $stmt->execute();
 
-header('Location: list.php');
+header('Location: ../top.php');
 
 } catch (\Exception $e) {
 echo $e->getMessage();

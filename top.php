@@ -73,13 +73,15 @@ order by status desc');
       </nav>
 
     </header>
-    <section class="folder">
-      <table>
+    <div class="contents">
+
+    <section class="top-folder">
+      <table class="folder-table">
         <tr>
           <th colspan="3"  class="folder-title">フォルダ</hd>
         </tr>
         <tr>
-          <th colspan="3" class="folder-create"><a href="folder/create.php">フォルダ新規作成</a></th>
+          <th colspan="3" class="folder-new-create"><a href="folder/create.php">フォルダ新規作成</a></th>
         </tr>
         <tr>
           <th class="folder-name">フォルダ名</th>
@@ -91,11 +93,11 @@ order by status desc');
         echo
         '<tr>
           <td>'. $folder['name'] .'</td>
-          <td><form class="form" action="folder/edit.php" method="post">
+          <td><form action="folder/edit.php" method="post">
               <input type="submit" name="edit" value="編集する">
               <input type="hidden" name="folder_id" value="' . $folder['id'] . '">
           </form></td>
-          <td><form class="form" action="top.php" method="post">
+          <td><form action="top.php" method="post">
               <input type="submit" name="select" value="選択する">
               <input type="hidden" name="folder_id" value="' . $folder['id'] . '">
           </form></td>
@@ -107,13 +109,13 @@ order by status desc');
     </table>
     </section>
 
-    <section class="todo">
-      <table>
+    <section class="top-todo">
+      <table class="todo-table">
         <tr>
           <th colspan="4" class="todo-title">todo</th>
         </tr>
         <tr>
-          <th colspan="4" class="todo-create"><a href="todo/create.php">todo新規作成</a></td>
+          <th colspan="4" class="todo-new-create"><a href="todo/create.php">todo新規作成</a></td>
         </tr>
   <tr>
     <th class="todo-name">todo名</th>
@@ -128,11 +130,11 @@ order by status desc');
   '<tr>
   <td>'. $todo['name'] .'</td>
   <td>'. $todo['status'].'</td>
-  <td><form class="form" action="todo/edit.php" method="post">
+  <td><form action="todo/edit.php" method="post">
       <input type="submit" name="edit" value="編集する">
       <input type="hidden" name="todo_id" value="' . $todo['id'] . '">
   </form></td>
-  <td><form class="form" action="todo/done.php" method="post">
+  <td><form action="todo/done.php" method="post">
            <input type="submit" name="done" value="完了">
            <input type="hidden" name="todo_id" value="' . $todo['id'] . '">
        </form></td>
@@ -144,6 +146,7 @@ order by status desc');
 </table>
 
     </section>
+  </div>
 
   </body>
 </html>

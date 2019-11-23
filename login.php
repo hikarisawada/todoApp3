@@ -8,8 +8,8 @@ require_once('config.php');
 
 
 // 既にログインしている場合にはプロフィールに遷移
-if (isset($_SESSION["USERID"])) {
-header('Location: profile.php');
+if (!empty($_SESSION["id"])) {
+header('Location: top.php');
 exit;
 }
 
@@ -25,12 +25,13 @@ if (isset($_POST['login'])) {
   // 空だったらエラー出す
   if (empty($_POST['email'])) {
     $error_message = 'メールアドレスが記入されていません。';
-  } elseif (empty($_POST["password"])) {
+  }
+  if (empty($_POST["password"])) {
     $error_message = 'パスワードが記入されていません。';
   }
    // 空じゃなかったら
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $email = h($_POST['email']);
+    $email = $_POST['email'];
 
   // DBに繋いで、
   try {
@@ -51,7 +52,6 @@ if (isset($_POST['login'])) {
     echo $e->getMessage();
   }
 
-  // 新規登録からログインページにリダイレクト
     $password = $_POST["password"];
     // var_dump($row['password']);
 
@@ -62,12 +62,12 @@ if (isset($_POST['login'])) {
 
     if (password_verify($_POST['password'], $row['password']))   {
       session_regenerate_id(true);
-      $_SESSION['email'] = $row['email'];
       $_SESSION['id'] = $row['id'];
       // $_SESSION['password'] = $row['password'];
+      // var_dump($_SESSION['id']);
 
 
-      header('Location: profile.php');
+      header('Location: top.php');
     } else {
       // var_dump($_POST['password']);
       echo 'メールアドレスまたはパスワードが間違っています2';
@@ -75,46 +75,11 @@ if (isset($_POST['login'])) {
       return false;
     }
 
-
-
-
-
   }
-  // ユーザIDとパスワードが入力されていたら認証する
-   // $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname'] );
-
-   // try {
-   //   $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-   //   // アドレス検索
-   //   $stmt = $pdo->prepare('select * from users where email = ?' );
-   //   $stmt->execute($_POST['email']);
-   //   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-   //
-   // } catch (PDOException $e) {
-   //   echo $e->getMessage();
-   //   //$errorMessage = $sql;
-   //   // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
-   //   // echo $e->getMessage();
-   // }
-
-
 
 }
 
 
-
-
-//
-// if (!isset($_SERVER['email']) || !isset($_SERVER['password'])) {
-//   echo "エラーだよ";
-// }
-
-
-// $email = $_POST['email'];
-// $password = $_POST['password'];
-//
-// $sql = "insert into users (email, password) values ('$email', '$password')";
-// $res = $pdo->query($sql);
 
  ?>
 
@@ -126,11 +91,21 @@ if (isset($_POST['login'])) {
    <head>
      <meta charset="utf-8">
      <title>Log In!</title>
-     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="styles3.css">
    </head>
    <body>
+     <header>
+       <nav>
+         <ul>
+           <li class="top"><a href="top.php">todoApp</a></li>
+           <li class="menu"><a href="signup.php">新規登録はこちら</a></li>
+         </ul>
+       </nav>
+
+     </header>
+     <h2>ログインページ</h2>
      <p><?php echo $error_message; ?></p>
-     <form action="" method="post">
+     <form class="login-form" action="" method="post">
        <div>
          <label>メールアドレス</label>
          <input type="email" name="email" placeholder="info@sample.com" value="">
@@ -141,9 +116,6 @@ if (isset($_POST['login'])) {
        </div>
        <div>
          <input type="submit" name="login" value="ログイン！">
-       </div>
-       <div>
-         <a href="/signup.php">新規登録はこちらから</a>
        </div>
        <!-- <a href="/login.php">ログイン</a> -->
      </form>

@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_STR);
     $stmt->execute();
 
-    header('Location: list.php');
+    header('Location: ../top.php');
 
   } catch (\Exception $e) {
     echo $e->getMessage();
@@ -48,12 +48,21 @@ if (isset($_POST['submit'])) {
    <head>
      <meta charset="utf-8">
      <title>folder_create</title>
-     <link rel="stylesheet" href="../styles.css">
+     <link rel="stylesheet" href="../styles3.css">
    </head>
    <body>
-     <h1>フォルダ作成ページ</h1>
-     <div>
-       <form class="" action="" method="post">
+     <header>
+       <nav>
+         <ul>
+           <li class="top"><a href="../top.php">todoApp</a></li>
+           <li class="menu"><a href="../logout.php">logout</a></li>
+           <li class="menu"><a href="../profile.php">ユーザー情報</a></li>
+         </ul>
+       </nav>
+
+     </header>
+     <h2>フォルダ作成ページ</h2>
+       <form class="folder-create" action="" method="post">
          <input type="text" name="folder_name" value="" placeholder="フォルダ名">
          <input type="submit" name="submit" value="作成！">
 

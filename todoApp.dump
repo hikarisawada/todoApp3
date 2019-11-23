@@ -1,0 +1,147 @@
+-- MySQL dump 10.13  Distrib 5.6.45, for Linux (x86_64)
+--
+-- Host: localhost    Database: todoApp
+-- ------------------------------------------------------
+-- Server version	5.6.45
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `folders`
+--
+
+DROP TABLE IF EXISTS `folders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `folders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `published_status` varchar(255) NOT NULL DEFAULT '',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `folders`
+--
+
+LOCK TABLES `folders` WRITE;
+/*!40000 ALTER TABLE `folders` DISABLE KEYS */;
+INSERT INTO `folders` VALUES (1,0,'ご飯','2','2019-09-05 16:21:45','2019-09-11 22:34:53'),(2,0,'手続き2','2','2019-09-09 21:25:04','2019-09-12 19:44:53'),(3,0,'勉強','1','2019-09-10 22:03:20','2019-09-12 19:33:48'),(5,0,'お腹すいた','3','2019-09-10 22:27:47','2019-09-11 22:47:16'),(6,0,'家事','1','2019-09-10 23:27:43','2019-09-12 19:33:47'),(7,0,'メール','1','2019-09-10 23:28:38','2019-09-11 13:52:10'),(8,0,'片付け','1','2019-09-11 22:13:10','2019-09-11 22:13:20'),(9,0,'ハローワーク','1','2019-09-12 19:46:21','2019-09-12 19:46:21'),(10,19,'飲み物23','1','2019-09-12 21:44:44','2019-09-16 23:52:11'),(11,0,'テスト','1','2019-09-12 23:37:52','2019-09-12 23:37:52'),(12,0,'お腹すいた','1','2019-09-12 23:47:30','2019-09-12 23:47:30'),(13,19,'お腹すいた','2','2019-09-13 15:16:20','2019-09-13 15:18:06'),(14,19,'勉強','1','2019-09-13 15:23:19','2019-09-13 15:23:19'),(15,19,'テスト','1','2019-09-15 10:19:41','2019-09-15 10:19:41'),(16,20,'塩分2','1','2019-09-15 15:35:16','2019-09-16 20:10:03'),(17,20,'ピカチュウ','1','2019-09-15 15:36:32','2019-09-15 15:36:32'),(18,20,'お腹すいた','1','2019-09-15 16:25:41','2019-09-15 16:25:41'),(19,20,'勉強','1','2019-09-16 00:13:16','2019-09-16 00:13:16'),(20,20,'家事','1','2019-09-16 20:04:24','2019-09-16 20:04:24'),(21,19,'お腹すいた','1','2019-09-16 22:58:04','2019-09-16 22:58:04'),(22,19,'お腹すいた2','1','2019-09-16 22:58:20','2019-09-16 22:58:20'),(23,19,'sdf','1','2019-09-16 22:58:34','2019-09-16 22:58:34'),(24,19,'ピカチュウ','1','2019-09-18 00:20:13','2019-09-18 00:20:13');
+/*!40000 ALTER TABLE `folders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `todos`
+--
+
+DROP TABLE IF EXISTS `todos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `todos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `folder_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `published_status` varchar(255) NOT NULL DEFAULT '',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `folder_id` (`folder_id`),
+  CONSTRAINT `todos_ibfk_1` FOREIGN KEY (`folder_id`) REFERENCES `folders` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `todos`
+--
+
+LOCK TABLES `todos` WRITE;
+/*!40000 ALTER TABLE `todos` DISABLE KEYS */;
+INSERT INTO `todos` VALUES (1,0,1,'お米買う','1','2019-09-05 16:21:56','2019-09-05 16:21:56'),(2,0,1,'オリーブオイル買う','2','2019-09-05 16:22:24','2019-09-12 22:23:36'),(3,19,2,'ハローワーク2','2','2019-09-09 21:25:14','2019-09-17 00:07:50'),(4,19,10,'水23','2','2019-09-12 21:45:01','2019-09-17 00:33:27'),(6,19,10,'いいい2','1','2019-09-15 10:09:12','2019-09-18 00:20:47'),(7,19,10,'aaa','2','2019-09-15 10:19:14','2019-09-15 10:19:18'),(8,19,15,'英語2','1','2019-09-15 10:25:10','2019-09-18 00:20:55'),(9,19,15,'uuu','1','2019-09-15 13:10:18','2019-09-15 13:10:18'),(10,19,15,'いいい','1','2019-09-15 13:21:16','2019-09-15 13:21:40'),(11,19,15,'ddd','2','2019-09-15 13:22:09','2019-09-17 00:27:37'),(12,20,16,'いいい','2','2019-09-15 15:36:16','2019-09-16 00:12:53'),(13,20,17,'黄色','2','2019-09-15 15:36:43','2019-09-15 15:41:02'),(14,20,17,'いいい','2','2019-09-15 15:38:00','2019-09-15 15:40:37'),(15,20,17,'aaa','3','2019-09-15 15:38:33','2019-09-16 00:12:54'),(16,20,17,'aaa','1','2019-09-15 15:52:20','2019-09-15 16:59:58'),(17,20,18,'いいい','1','2019-09-16 00:13:01','2019-09-16 00:13:01'),(18,20,20,'お皿洗い','1','2019-09-16 20:30:46','2019-09-16 20:30:46'),(19,19,23,'いいい','1','2019-09-16 23:48:26','2019-09-16 23:48:26'),(20,19,23,'いいい','1','2019-09-16 23:48:47','2019-09-16 23:48:47'),(21,19,23,'本読む','1','2019-09-17 09:50:14','2019-09-17 09:50:14'),(22,19,23,'米を炊く','1','2019-09-17 09:51:04','2019-09-17 09:51:04'),(23,19,23,'かく','1','2019-09-17 09:57:00','2019-09-17 09:57:00'),(24,19,23,'あ','1','2019-09-17 10:00:51','2019-09-17 10:00:51'),(25,19,15,'英語','1','2019-09-18 00:18:36','2019-09-18 00:18:36'),(26,19,10,'ジュース','1','2019-09-18 00:18:57','2019-09-18 00:18:57'),(27,19,24,'なでる','2','2019-09-18 00:20:26','2019-09-18 00:20:35');
+/*!40000 ALTER TABLE `todos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_folder_todo_join`
+--
+
+DROP TABLE IF EXISTS `user_folder_todo_join`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_folder_todo_join` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `folder_id` int(11) NOT NULL,
+  `todo_id` int(11) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `folder_id` (`folder_id`),
+  KEY `todo_id` (`todo_id`),
+  CONSTRAINT `user_folder_todo_join_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `user_folder_todo_join_ibfk_2` FOREIGN KEY (`folder_id`) REFERENCES `folders` (`id`),
+  CONSTRAINT `user_folder_todo_join_ibfk_3` FOREIGN KEY (`todo_id`) REFERENCES `todos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_folder_todo_join`
+--
+
+LOCK TABLES `user_folder_todo_join` WRITE;
+/*!40000 ALTER TABLE `user_folder_todo_join` DISABLE KEYS */;
+INSERT INTO `user_folder_todo_join` VALUES (1,1,1,1,'2019-09-05 16:22:07','2019-09-05 16:22:07'),(2,1,1,2,'2019-09-05 16:23:10','2019-09-05 16:23:10'),(3,19,2,3,'2019-09-09 21:27:12','2019-09-13 11:15:18'),(7,17,10,4,'2019-09-12 21:45:34','2019-09-13 00:03:50');
+/*!40000 ALTER TABLE `user_folder_todo_join` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'sregt@gmail.com','fwagrethr','2019-09-05 16:21:38','2019-09-05 16:21:38'),(2,'rtu6trfg@gmail.com','ewfrgeth','2019-09-08 14:27:07','2019-09-08 14:27:09'),(3,'sregt@gmail.com','zxsdfghmj','2019-09-10 09:53:43','2019-09-10 09:53:43'),(4,'sregt@gmail.com','zxsdfghmj','2019-09-10 09:53:45','2019-09-10 09:53:45'),(5,'sregt@gmail.com','sadfgh','2019-09-10 09:53:49','2019-09-10 09:53:49'),(6,'sregt@gmail.com','wfegwrhetjryktu','2019-09-10 09:53:53','2019-09-10 09:53:53'),(7,'sregt@gmail.com','wfegwrhetjryktu','2019-09-10 10:00:58','2019-09-10 10:00:58'),(8,'sregasdt@gmail.com','werty','2019-09-10 10:05:23','2019-09-10 10:05:23'),(9,'sregsdft@gmail.com','$2y$10$zwWydfTGid0ghZuuM/P/UOZtmFF5QAuMPnd419rkXtSEn7256IiFe','2019-09-10 10:20:26','2019-09-10 10:20:26'),(10,'hikarisawada1930428@gmail.com','$2y$10$xosp1MoevGDk85RGc2wvTOopc9CxymhWRAXRyJUZ4QY.JeHzVUOau','2019-09-10 10:53:51','2019-09-12 20:44:57'),(11,'sregt@gmail.com','$2y$10$0L1Fd4OD..QiorxqVSShauEiFDIfMqD0CDRcNuI0NhLQKCfGn696K','2019-09-10 14:38:54','2019-09-10 14:38:54'),(12,'sregasdt@gmail.com','$2y$10$J.WNlnNGejsTT7SrkOR3huL2Ug2hPNO.gQqwmbASN5mO52psUKvA6','2019-09-10 14:46:18','2019-09-10 14:46:18'),(13,'hikarisawada930428@gmail.com','$2y$10$sfYwxMJy1cmWcl3hW5DQ6OcUX0jRD9tmlCnq3UiyhUk86zcK8SaMS','2019-09-10 14:56:22','2019-09-10 14:56:22'),(14,'sregt@gmail.com','$2y$10$olXcmlU6Ys3KhOw4SfaHL.EbbBm0iq.YvUvy5TBu5gS30r4R.kCFS','2019-09-10 15:11:44','2019-09-10 15:11:44'),(15,'hsawada@cocooking.co.jp','$2y$10$t3VN16IhQMjO9i1YDaxmr.ILtZRmZ/GW7eRx1xnWf7sl3kt/7fQtW','2019-09-10 15:21:21','2019-09-10 15:21:21'),(16,'a@gmail.com','$2y$10$kH902ciglBS..dldFMYDTezno4buils6vY49FU88iYFhgmR0R07UK','2019-09-12 20:49:39','2019-09-13 11:13:40'),(17,'b@gmail.com','$2y$10$pUaDTC.6f06zUSA1Bi2vDe60vRyMCGZUXjE0hdf6g2l8eys3aow4.','2019-09-12 23:47:07','2019-09-12 23:47:07'),(18,'c@gmail.com','$2y$10$kH902ciglBS..dldFMYDTezno4buils6vY49FU88iYFhgmR0R07UK','2019-09-13 11:12:24','2019-09-13 11:12:24'),(19,'pika@gmail.com','$2y$10$0/KeRD8FZx.9AMqepVrXeeRlmNUdrFhsU5uJ3SEBfv8kgnbtoHhjy','2019-09-13 11:14:55','2019-09-18 00:19:27'),(20,'h@gmail.com','$2y$10$iA.azr4pjdzA19TbNFm/c..eSiDY9SIf0FQrmEMaGKtGm1PM7xGka','2019-09-15 15:35:03','2019-09-15 16:28:27'),(21,'i@gmail.com','$2y$10$rNu/1Jyah1CBi8iUhZK2zuH91Q2vaOvRJ7229fLiId5kPGB3RSx6S','2019-09-17 00:57:12','2019-09-17 00:57:12');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-09-19 19:09:12
